@@ -1,0 +1,35 @@
+<h1>ESTO ES LOGIN</h1>
+
+<div ng-controller="login_ctrl">
+
+            <p>{{dataUser}}</p>
+            <p>{{iscordova}}</p>
+
+
+<form id="my-form" class="list-block" ng-submit="sendName(name)">
+  <ul>
+    <li>
+      <div class="item-content">
+        <div class="item-inner">
+          <div class="item-title label">Name</div>
+          <div class="item-input">
+            <input type="text" name="name" ng-model="name" placeholder="Your name">
+          </div>
+        </div>
+      </div>
+    </li>
+  </ul>
+
+<div class="content-block">
+  <a type="submit" class="button form-to-data" ng-click="sendName(name)">ENVIAR</a>
+</div>
+</form>
+ 
+      <div class="content-block">
+          <a type="submit" class="button form-to-data" ng-click="fetchMsg()">PROBAR TOKEN</a>
+    </div>
+<h2>{{pruebaToken}}</h2>
+    
+
+   <p><a href="#" class="button button-raised facebook-button" ng-click="facebookLogin()"><i class="f7-icons">social_facebook_fill</i> Log in to Facebook</a></p>
+</div>

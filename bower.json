@@ -1,0 +1,24 @@
+{
+  "name": "StandardApp",
+  "authors": [
+    "Neithen"
+  ],
+  "description": "App Standard con las instalaciones comunes",
+  "main": "bower",
+  "keywords": [
+    "asd"
+  ],
+  "license": "Prueba",
+  "homepage": "www.buenjugador.com.ar",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "ngstorage": "^0.3.11"
+  }
+}
