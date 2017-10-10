@@ -18,3 +18,62 @@ function fetchmessage($resource){
 	return data;
 }
 app.factory('fetchmessage', ['$resource', fetchmessage]);
+
+function sendFCMToken($resource){
+	var token = $resource('http://192.168.0.115:8081/api/setToken');
+	return token;
+}
+
+app.factory('sendFCMToken',['$resource',sendFCMToken]);
+
+app.factory('$FCMPlugin', ['sendFCMToken', $FCMPlugin]);
+
+        $FCMPlugin.$inject = [];
+
+        function $FCMPlugin(sendFCMToken) {
+           
+            var service = {
+                getToken: function(email) {
+                    FCMPlugin.getToken(function(token){
+
+                    		alert(token);
+                    		if (token != undefined && token != null){
+	                        	console.log(token);
+	                        	sendFCMToken.save({email: email, token: token}, function(result){
+	                        		console.log('token guardado');
+	                        	}, function(error){
+	                        		console.log('hubo un error al guardar el token');
+	                        	})
+	                        }else{
+	                        	console.log('token null');
+	                        }
+                    	})
+                    }
+                }
+            return service;            
+
+          }
+
+       /* function $FCMPlugin($q) {
+
+        	return {
+        		getToken: getToken
+        	}
+
+        	function getToken(){
+
+	        	var deferred = $q.defer();
+	        	var promise = defered.promise;
+
+	           
+	            FCMPlugin.getToken().then(function(token){
+	            	defered.resolve(token);
+	            })
+	            .catch(function(error){
+	            	defered.reject(error);
+	            });
+	      
+	            return promise;
+	         }            
+
+          }*/

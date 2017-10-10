@@ -16,48 +16,6 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-var app2 = {
-    // Application Constructor
-    initialize: function() {
-        document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
-    },
-
-    // deviceready Event Handler
-    //
-    // Bind any cordova events here. Common events are:
-    // 'pause', 'resume', etc.
-    onDeviceReady: function() {
-        this.receivedEvent('deviceready');
-    },
-
-    // Update DOM on a Received Event
-    receivedEvent: function(id) {
-        var parentElement = document.getElementById(id);
-        var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.received');
-
-        listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');
-
-        console.log('Received Event: ' + id);
-    }
-};
-
-app2.initialize();
-
- var config = {
-            apiKey: "AIzaSyC8dpd_zcHuia0zieXUW3jVQFDcNIp58jU",
-            authDomain: "standardapp-37abf.firebaseapp.com",
-            databaseURL: "https://standardapp-37abf.firebaseio.com",
-            projectId: "standardapp-37abf",
-            storageBucket: "standardapp-37abf.appspot.com",
-            messagingSenderId: "1018658056483"
-          };
-firebase.initializeApp(config);
-
-var myApp = new Framework7();
-
-//Angular initialize
 
 var app = angular.module('StandardApp',['ngResource', 'ngStorage','ui.router']);
 
@@ -76,4 +34,75 @@ app.config(function($stateProvider, $urlRouterProvider) {
     })
 
     $urlRouterProvider.otherwise('/dashboard');
-});
+})
+
+
+
+var app2 = {
+    // Application Constructor
+    initialize: function() {
+        document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
+    },
+
+    // deviceready Event Handler
+    //
+    // Bind any cordova events here. Common events are:
+    // 'pause', 'resume', etc.
+    onDeviceReady: function() {
+
+         FCMPlugin.onNotification(function(data){
+            if(data.wasTapped){
+              //Notification was received on device tray and tapped by the user. 
+              alert( JSON.stringify(data) );
+              console.log(JSON.stringify(data) )
+            }else{
+              //Notification was received in foreground. Maybe the user needs to be notified. 
+              alert( JSON.stringify(data) );
+            }
+        });
+    
+           angular.element(document).ready(function () {
+            if (window.cordova) {
+              document.addEventListener('deviceready', function () {
+                angular.bootstrap(document.body, ['StandardApp']);
+              }, false);
+            } else {
+              angular.bootstrap(document.body, ['StandardApp']);
+            }
+          });
+        this.receivedEvent('deviceready');
+
+    },
+
+    // Update DOM on a Received Event
+    receivedEvent: function(id) {
+        var parentElement = document.getElementById(id);
+        var listeningElement = parentElement.querySelector('.listening');
+        var receivedElement = parentElement.querySelector('.received');
+
+        listeningElement.setAttribute('style', 'display:none;');
+        receivedElement.setAttribute('style', 'display:block;');
+
+        console.log('Received Event: ' + id);
+    }
+};
+
+app2.initialize();
+
+
+
+
+
+ var config = {
+            apiKey: "AIzaSyC8dpd_zcHuia0zieXUW3jVQFDcNIp58jU",
+            authDomain: "standardapp-37abf.firebaseapp.com",
+            databaseURL: "https://standardapp-37abf.firebaseio.com",
+            projectId: "standardapp-37abf",
+            storageBucket: "standardapp-37abf.appspot.com",
+            messagingSenderId: "1018658056483"
+          };
+firebase.initializeApp(config);
+
+var myApp = new Framework7();
+
+//Angular initialize

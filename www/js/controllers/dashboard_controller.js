@@ -1,7 +1,7 @@
-app.controller('dashboard_ctrl', ['$scope','$localStorage','$state', function($scope, $localStorage, $state){
+app.controller('dashboard_ctrl', ['$scope','$localStorage','$state','$FCMPlugin',
+ function($scope, $localStorage, $state, $FCMPlugin){
 
 $scope.init = function(){
-	debugger;
 	if ($localStorage.user == undefined || $localStorage.user == null){
 
 		$state.go('login');
@@ -14,12 +14,17 @@ $scope.init = function(){
 		$scope.user.photo = $localStorage.user.photo;
 		$scope.user.provider = $localStorage.user.provider;
 		$scope.userToken = $localStorage.userToken;
+
+		//TOKEN PUSH NOTIFICATION
+
+		$FCMPlugin.getToken($scope.user.email);
+
+
 	}
 
 
 }
 
 $scope.init();
-
 
 }])

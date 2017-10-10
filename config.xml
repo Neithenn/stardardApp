@@ -39,4 +39,5 @@
         <variable name="APP_NAME" value="standardApp" />
     </plugin>
     <plugin name="cordova-plugin-device" spec="~1.1.6" />
+    <plugin name="cordova-plugin-fcm" spec="~2.1.2" />
 </widget>

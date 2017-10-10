@@ -1,6 +1,6 @@
 
 
-app.controller('login_ctrl', ['$scope','getInfo','getToken', '$localStorage', 'fetchmessage', '$state', function($scope,getInfo, getToken, $localStorage, fetchmessage, $state){
+app.controller('login_ctrl', ['$scope','getInfo','getToken', '$localStorage', 'fetchmessage', '$state','$FCMPlugin', function($scope,getInfo, getToken, $localStorage, fetchmessage, $state,$FCMPlugin){
 
 
 $scope.init = function(){
@@ -121,6 +121,9 @@ function assign_user(authData){
 	}
 
 }
+
+
+
 
 
 }]);
