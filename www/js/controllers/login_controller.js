@@ -18,8 +18,8 @@ $scope.init = function(){
 		firebase.auth().getRedirectResult().then(function(result) {		  
 			//TENGO QUE METER UN LOADING
 			if (result.user != undefined && result.user != null){
-				assign_user(result.user);
-				$state.go('dashboard');
+				assign_user_and_move(result.user);
+				
 			}
 		});
 	}
@@ -75,7 +75,7 @@ $scope.facebookLogin = function(){
 		        provider = firebase.auth.FacebookAuthProvider.credential(result.authResponse.accessToken);
 		        firebase.auth().signInWithCredential(provider).then(function(authData) {
 		            // User successfully logged in
-		            assign_user(authData.user);
+		            assign_user_and_move(authData.user);
 		            $state.go('dashboard');
 		           
 		        }).catch(function(error) {
@@ -98,7 +98,7 @@ $scope.facebookLogin = function(){
 	});
 }//FIN LOGIN
 
-function assign_user(authData){
+function assign_user_and_move(authData){
 
 	if (authData != undefined && authData != null){
 		$scope.user = {};
@@ -113,7 +113,9 @@ function assign_user(authData){
 	    //enviar a nodejs y traer token
 	    getToken.save({user: $scope.user}, function(result){
 			$localStorage.userToken = result.token;
+			$localStorage.user.uid = result.uid;
 			console.log(result.token);
+			$state.go('dashboard');
 			//Next page
 		},function(error){
 			console.log('error'+error);

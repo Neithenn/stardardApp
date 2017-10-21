@@ -60,6 +60,22 @@ var app2 = {
               alert( JSON.stringify(data) );
             }
         });
+
+         
+
+
+           var config = {
+                      apiKey: "AIzaSyC8dpd_zcHuia0zieXUW3jVQFDcNIp58jU",
+                      authDomain: "standardapp-37abf.firebaseapp.com",
+                      databaseURL: "https://standardapp-37abf.firebaseio.com",
+                      projectId: "standardapp-37abf",
+                      storageBucket: "standardapp-37abf.appspot.com",
+                      messagingSenderId: "1018658056483"
+                    };
+          firebase.initializeApp(config);
+
+
+          console.log('camera: '+ navigator.camera);
     
            angular.element(document).ready(function () {
             if (window.cordova) {
@@ -90,18 +106,6 @@ var app2 = {
 app2.initialize();
 
 
-
-
-
- var config = {
-            apiKey: "AIzaSyC8dpd_zcHuia0zieXUW3jVQFDcNIp58jU",
-            authDomain: "standardapp-37abf.firebaseapp.com",
-            databaseURL: "https://standardapp-37abf.firebaseio.com",
-            projectId: "standardapp-37abf",
-            storageBucket: "standardapp-37abf.appspot.com",
-            messagingSenderId: "1018658056483"
-          };
-firebase.initializeApp(config);
 
 var myApp = new Framework7();
 

@@ -53,27 +53,3 @@ app.factory('$FCMPlugin', ['sendFCMToken', $FCMPlugin]);
             return service;            
 
           }
-
-       /* function $FCMPlugin($q) {
-
-        	return {
-        		getToken: getToken
-        	}
-
-        	function getToken(){
-
-	        	var deferred = $q.defer();
-	        	var promise = defered.promise;
-
-	           
-	            FCMPlugin.getToken().then(function(token){
-	            	defered.resolve(token);
-	            })
-	            .catch(function(error){
-	            	defered.reject(error);
-	            });
-	      
-	            return promise;
-	         }            
-
-          }*/
