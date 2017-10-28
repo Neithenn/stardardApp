@@ -79,6 +79,10 @@ $scope.init = function(){
 
 $scope.init();
 
+	$scope.goToChat = function(){
+		$state.go('users_list');		
+	}
+
 	$scope.logout = function(){
 
 		firebase.auth().signOut().then(function(){
@@ -91,7 +95,13 @@ $scope.init();
 		})
 		.catch(function(){
 
-			console.log('no se pudo deslogear!');
+			console.log('no se pudo deslogear de firebase!');
+				
+
+   				// console.log('Cookies cleared!');
+   				 $localStorage.user = undefined;
+   				 $state.go('login');
+			
 
 		});
 	}

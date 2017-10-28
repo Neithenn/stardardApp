@@ -17,7 +17,7 @@
  * under the License.
  */
 
-var app = angular.module('StandardApp',['ngResource', 'ngStorage','ui.router']);
+var app = angular.module('StandardApp',['ngResource', 'ngStorage','ui.router', 'btford.socket-io']);
 
 app.config(function($stateProvider, $urlRouterProvider) {
 
@@ -31,6 +31,15 @@ app.config(function($stateProvider, $urlRouterProvider) {
     .state('dashboard',{
         url: '/dashboard',
         templateUrl: 'templates/dashboard.html'
+    })
+    .state('chat',{
+        url: '/chat',
+        templateUrl: 'templates/chat.html',
+        params: {friend: null}
+    })
+    .state('users_list',{
+        url: '/users_list',
+        templateUrl: 'templates/users_list.html'
     })
 
     $urlRouterProvider.otherwise('/dashboard');

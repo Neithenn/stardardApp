@@ -53,3 +53,17 @@ app.factory('$FCMPlugin', ['sendFCMToken', $FCMPlugin]);
             return service;            
 
           }
+
+app.factory('getUsers', ['$resource', getUsers]);
+
+	function getUsers($resource){
+		var users = $resource('http://192.168.0.115:8081/api/getusers');
+		return users;
+	}
+
+app.factory('getSavedChats', ['$resource', getSavedChats]);
+	
+	function getSavedChats($resource){
+		var chats = $resource('http://192.168.0.115:8081/api/savedchats');
+		return chats;
+	}
