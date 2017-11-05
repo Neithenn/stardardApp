@@ -17,7 +17,7 @@
  * under the License.
  */
 
-var app = angular.module('StandardApp',['ngResource', 'ngStorage','ui.router', 'btford.socket-io']);
+var app = angular.module('StandardApp',['ngResource','ngMaterial', 'ngStorage','ui.router', 'btford.socket-io']);
 
 app.config(function($stateProvider, $urlRouterProvider) {
 
@@ -116,6 +116,6 @@ app2.initialize();
 
 
 
-var myApp = new Framework7();
+//var myApp = new Framework7();
 
 //Angular initialize

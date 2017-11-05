@@ -1,5 +1,11 @@
 <div ng-controller="user_list_ctrl">
 
+<md-list>
+	<md-list-item ng-repeat="user in users_list" ng-click="gotochat(user)">{{user}}<md-list-item>
+</md-list>
+
+
+<!--
 <div class="list-block">
   <ul>
     <li class="item-content" ng-repeat="user in users_list" ng-click="gotochat(user)">
@@ -9,5 +15,5 @@
       </div>
     </li>
   </ul>
-</div>
+</div>-->
 </div>

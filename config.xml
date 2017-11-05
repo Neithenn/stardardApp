@@ -41,4 +41,5 @@
     <plugin name="cordova-plugin-device" spec="~1.1.6" />
     <plugin name="cordova-plugin-fcm" spec="~2.1.2" />
     <plugin name="cordova-plugin-camera" spec="~2.4.1" />
+    <plugin name="com.mercadopago.cordova.sdk" spec="~1.1.18" />
 </widget>

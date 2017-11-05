@@ -1,22 +1,29 @@
 
 <div ng-controller="dashboard_ctrl">
-	<h1>DASHBOARD</h1>
-	<p>nombre: {{user.nombre}}</p>
-	<p>uid: {{user.uid}}</p>
-	<p>email: {{user.email}}</p>
-	<p>photo: {{user.photo}}</p>
-	<p>imagen: {{userAvatar}}</p>
+	<md-content>
+		<h1>DASHBOARD</h1>
+		<p>nombre: {{user.nombre}}</p>
+		<p>uid: {{user.uid}}</p>
+		<p>email: {{user.email}}</p>
+		<p>photo: {{user.photo}}</p>
+		<p>imagen: {{userAvatar}}</p>
+		
+		<div class="centered">	
+			<md-button class="md-raised md-primary" ng-click="getPicturefromGallery()">Buscar Imagen</md-button>
+		</div>
+		<div class="centered">	
+			<md-button class="md-raised md-primary" ng-click="goToChat()">Chat Room</md-button>
+		</div>
+		<div class="centered">	
+			<md-button class="md-raised md-primary" ng-click="startCheckout()">Pagar</md-button>
+		</div>
+		<div class="centered">	
+			<md-button class="md-raised md-primary" ng-click="logout()">Logout</md-button>
+		</div>
 
-	<div class="content-block">
-  		<a class="button form-to-data" ng-click="getPicturefromGallery()">Buscar Imagen</a>
-	</div>
-	<div class="content-block">
-  		<a class="button form-to-data" ng-click="goToChat()">Chat Room</a>
-	</div>
-	<div class="content-block">
-  		<a class="button form-to-data" ng-click="logout()">Logout</a>
-	</div>
-	<div class="centered">
-		<img src="{{userAvatar}}" alt="imagen avatar" class="img-avatar"></img>
-	</div>
+		
+		<div class="centered">
+			<img src="{{userAvatar}}" alt="imagen avatar" class="img-avatar"></img>
+		</div>
+	</md-content>
 </div>

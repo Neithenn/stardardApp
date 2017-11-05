@@ -21,6 +21,7 @@
   "dependencies": {
     "ngstorage": "^0.3.11",
     "angular-socket-io": "^0.7.0",
-    "socket.io-client": "sio-client#^1.4.8"
+    "socket.io-client": "sio-client#^1.4.8",
+    "angular-material": "^1.1.5"
   }
 }
