@@ -1,26 +1,21 @@
-function getInfo($resource){
+function statusConnection($resource){
+	//verifica conexion entre app y api
 	var data = $resource('http://192.168.0.115:8081/normal');
 	return data;
 }
 
-app.factory('getInfo', ['$resource', getInfo]);
+app.factory('statusConnection', ['$resource', 'API_URL', statusConnection]);
 
-function getToken($resource){
-	var data = $resource('http://192.168.0.115:8081/api/authenticate');
-	return data;
+function LoginOrSigninNodejs($resource, API_URL){
+	var token = $resource(API_URL+'authenticate');
+	return token;
 }
 
-app.factory('getToken', ['$resource', getToken]);
+app.factory('LoginOrSigninNodejs', ['$resource','API_URL', LoginOrSigninNodejs]);
 
 
-function fetchmessage($resource){
-	var data = $resource('http://192.168.0.115:8081/api/testToken');
-	return data;
-}
-app.factory('fetchmessage', ['$resource', fetchmessage]);
-
-function sendFCMToken($resource){
-	var token = $resource('http://192.168.0.115:8081/api/setToken');
+function sendFCMToken($resource, API_URL){
+	var token = $resource(API_URL+'setToken');
 	return token;
 }
 
@@ -54,16 +49,16 @@ app.factory('$FCMPlugin', ['sendFCMToken', $FCMPlugin]);
 
           }
 
-app.factory('getUsers', ['$resource', getUsers]);
+app.factory('getUsers', ['$resource', 'API_URL', getUsers]);
 
-	function getUsers($resource){
-		var users = $resource('http://192.168.0.115:8081/api/getusers');
+	function getUsers($resource, API_URL){
+		var users = $resource(API_URL+'getusers');
 		return users;
 	}
 
-app.factory('getSavedChats', ['$resource', getSavedChats]);
+app.factory('getSavedChats', ['$resource', 'API_URL', getSavedChats]);
 	
-	function getSavedChats($resource){
-		var chats = $resource('http://192.168.0.115:8081/api/savedchats');
+	function getSavedChats($resource, API_URL){
+		var chats = $resource(API_URL+'savedchats');
 		return chats;
 	}

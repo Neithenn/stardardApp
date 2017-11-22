@@ -1,4 +1,17 @@
-.facebook-button{
-	background-color: #3b5998;
-	color:white;
+.facebook{
+  color: #FAFAFA;
+  background: #3b5998;
+  width: 100%;
+  text-transform: none;
+}
+
+
+.login-div{
+	margin-right:15%;
+	margin-left: 15%;
+	margin-top:25%;
+}
+
+.input-size{
+	font-size: 16px;
 }

@@ -1,17 +1,19 @@
 
 
-app.controller('login_ctrl', ['$scope','getInfo','getToken', '$localStorage', 'fetchmessage', '$state','$FCMPlugin', function($scope,getInfo, getToken, $localStorage, fetchmessage, $state,$FCMPlugin){
+app.controller('login_ctrl', ['$scope','statusConnection','LoginOrSigninNodejs', '$localStorage', '$state','$FCMPlugin','loading',
+ function($scope,statusConnection, LoginOrSigninNodejs, $localStorage, $state,$FCMPlugin, loading){
 
 
 $scope.init = function(){
 	//obtengo un string de la api
-	getInfo.get(null, function(result){
+	$scope.error = {};
+	statusConnection.get(null, function(result){
 		$scope.dataUser= result.prueba;
 	},function(error){
-		console.log('hubo un error'+error);
+		console.log('No hubo conectividad con la API'+error);
 	});
 
-	//AGARRO EL CALL BACK
+	//AGARRO EL CALL BACK DE FIREBASE
 	var isApp = !document.URL.startsWith('http');
 
 	if (window.cordova && !isApp) {
@@ -21,40 +23,75 @@ $scope.init = function(){
 				assign_user_and_move(result.user);
 				
 			}
+		}).catch(function(error){
+
+			switch(error.code){
+		 	case 'auth/account-exists-with-different-credential':
+			 	$scope.$apply(function(){
+			  	 $scope.error.email_other_method = true;
+			  });
+			 	break;
+			 default:
+			 	$scope.$apply(function(){
+			  	 $scope.error.unexpected_error = true;
+			  });
+			 	break;
+		 	}
 		});
 	}
 }
 
 $scope.init();
 
-$scope.sendName = function(name){
-	console.log('estamos enviado data '+name);
-	//Envio string y me tiene que devolver un TOKEN
+$scope.LoginPassword = function(email, password){
 
-	$scope.user = {};
-	$scope.user.nombre = 'Ezequiel Ramiro Browser';
-	$scope.user.provider = 'Browser';
-	$scope.user.email = name;
-	$scope.user.photo = 'no hay';
-	getToken.save({user: $scope.user}, function(result){
-		$localStorage.userToken = result.token;
-		$localStorage.user = $scope.user;
-		$state.go('dashboard');
+	$scope.error = {};
 
-		//Salvar token a ngstorage
-	},function(error){
-		console.log('error'+error);
-	})
-}
+	if ($scope.loginform.$valid){
+		loading.showWait();
+		//DEBERIA LOGEARME CON FIREBASE y CONSEGUIR TOKEN DE API
+		firebase.auth().signInWithEmailAndPassword(email, password)
+		.then(function(user){
 
-$scope.fetchMsg = function(){
-	fetchmessage.get({token: $localStorage.userToken},function(result){
-		console.log('todo ok'+ result);
-		$scope.pruebaToken = result.msg;
-	},function(error){
-		console.log('otro error');
-		$scope.pruebaToken = 'fallo';
-	})
+			$scope.user = {};
+			
+			$scope.user.provider = 'Password';
+			$scope.user.email = email;
+			$scope.user.photo = 'no hay';	
+			
+			LoginOrSigninNodejs.save({user: $scope.user}, function(result){
+
+				$scope.user.name = result.name;
+				$localStorage.userToken = result.token;
+				$localStorage.user = $scope.user;
+				$localStorage.user.uid = result.uid;
+				loading.hideWait();
+				$state.go('dashboard');
+
+				//Salvar token a ngstorage
+			},function(error){
+				loading.hideWait();
+				console.log('error'+error);
+			})
+		})
+		.catch(function(error) {
+		  // Handle Errors here.
+		  loading.hideWait();
+		  switch(error.code){
+		 	case 'auth/user-not-found':
+			 	$scope.$apply(function(){
+			  	 $scope.error.wrong_user= true;
+			  });
+			 	break;
+			 default:
+			 	$scope.$apply(function(){
+			  	 $scope.error.unexpected_error = true;
+			  });
+			 	break;
+		 	}
+		});
+		
+	}
 }
 
 
@@ -111,7 +148,7 @@ function assign_user_and_move(authData){
 	    $localStorage.user = $scope.user;
 
 	    //enviar a nodejs y traer token
-	    getToken.save({user: $scope.user}, function(result){
+	    LoginOrSigninNodejs.save({user: $scope.user}, function(result){
 			$localStorage.userToken = result.token;
 			$localStorage.user.uid = result.uid;
 			console.log(result.token);
@@ -122,6 +159,16 @@ function assign_user_and_move(authData){
 		});
 	}
 
+}
+
+
+$scope.signin = function(){
+
+	$state.go('signin');
+}
+
+$scope.resetPassword = function(){
+	$state.go('reset');
 }
 
 

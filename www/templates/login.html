@@ -1,35 +1,63 @@
-<h1>ESTO ES LOGIN</h1>
 
+<md-content>
 <div ng-controller="login_ctrl">
 
             <p>{{dataUser}}</p>
             <p>{{iscordova}}</p>
 
 
-<form id="my-form" class="list-block" ng-submit="sendName(name)">
-  <ul>
-    <li>
-      <div class="item-content">
-        <div class="item-inner">
-          <div class="item-title label">Name</div>
-          <div class="item-input">
-            <input type="text" name="name" ng-model="name" placeholder="Your name">
-          </div>
-        </div>
-      </div>
-    </li>
-  </ul>
-
-<div class="content-block">
-  <a type="submit" class="button form-to-data" ng-click="sendName(name)">ENVIAR</a>
-</div>
-</form>
- 
-      <div class="content-block">
-          <a type="submit" class="button form-to-data" ng-click="fetchMsg()">PROBAR TOKEN</a>
+  <md-toolbar class="error-toolbar" ng-if="error.email_other_method">
+    <div class="md-toolbar-tools">
+      <p class="error-text">El e-mail ya fue utilizado con otro método de acceso.</p>
     </div>
-<h2>{{pruebaToken}}</h2>
-    
+  </md-toolbar>
 
-   <p><a href="#" class="button button-raised facebook-button" ng-click="facebookLogin()"><i class="f7-icons">social_facebook_fill</i> Log in to Facebook</a></p>
+  <md-toolbar class="error-toolbar aling-items" ng-if="error.wrong_user">
+    <div class="md-toolbar-tools">
+      <p class="error-text">E-mail o contraseña inválidos.</p>
+    </div>
+  </md-toolbar>   
+
+  <md-toolbar class="error-toolbar" ng-if="error.unexpected_error">
+    <div class="md-toolbar-tools">
+      <p class="error-text">Un error inesperado ocurrió. Vuelve a intentar luego o con otra cuenta.</p>
+    </div>
+  </md-toolbar>     
+<div class="login-div">
+  <form name="loginform" novalidate ng-submit="LoginPassword(email, password)">
+    
+     <md-input-container class="md-block input-size">
+      <label>Email</label>
+      <input type="email" name="useremail" ng-model="email" required md-no-asterisk ></input>
+      <div ng-messages="loginform.useremail.$error">
+        <p ng-message="required">¡Debes ingresar tu e-mail!</p>
+        <p ng-message="email">Ingresa un e-mail correcto.</p>
+      </div>
+     </md-input-container>
+
+     <md-input-container class="md-block input-size">
+      <label>Contraseña</label>
+      <input type="password" ng-model="password" name="userpassword" required  md-no-asterisk minlength="6"></input>
+      <div ng-messages="loginform.userpassword.$error">
+        <div ng-message="required">¡Debes ingresar una contraseña!</div>
+        <div ng-message="minlength">Debe tener al menos 6 caracteres.</div>
+      </div>
+     </md-input-container>
+ 
+        <md-button type="submit" class="md-raised md-primary">ENTRAR</md-button>
+    
+  </form>
+    
+<div class="centered">
+   <md-button class="facebook" ng-click="facebookLogin()">
+    <i class="fa fa-facebook" aria-hidden="true"></i> Ingresar con Facebook
+  </md-button>
+
+  <div class="centered">
+    <md-button class="md-accent" ng-click="resetPassword()">¿Olvidaste tu contraseña?</md-button>
+    <md-button class="md-accent" ng-click="signin()">¿No tienes cuenta?</md-button>
+  </div>
 </div>
+</div>
+</div>
+</md-content>

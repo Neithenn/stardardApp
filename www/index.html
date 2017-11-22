@@ -45,10 +45,12 @@
         <link rel="stylesheet" type="text/css" href="css/framework7-icons.css">
         -->
         <!-- ANGULAR MATERIAL CSS-->
-           <link rel="stylesheet" type="text/css" href="css/index.css">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
         <link rel="stylesheet" type="text/css" href="lib/angular-material/angular-material.css">
+        <!-- FONT AWESOME-->
+        <link rel="stylesheet" type="text/css" href="lib/font-awesome/css/font-awesome.min.css">
         <!-- CUSTOM CSS-->
-     
+        <link rel="stylesheet" type="text/css" href="css/general.css">
         <link rel="stylesheet" type="text/css" href="css/login.css">
         <link rel="stylesheet" type="text/css" href="css/dashboard.css">
         <link rel="stylesheet" type="text/css" href="css/chat.css">
@@ -57,7 +59,7 @@
     </head>
     <body>
         
-            <div ui-view></div>
+            <div ui-view class="main-div"></div>
 
     </body>
 
@@ -78,6 +80,7 @@
 
         <script type="text/javascript" src="lib/angular-resource/angular-resource.min.js"></script>
         <script type="text/javascript" src="lib/ngstorage/ngStorage.min.js"></script>
+        <script type="text/javascript" src="lib/angular-messages/angular-messages.js"></script>
         <script type="text/javascript" src="lib/angular-ui-router/release/angular-ui-router.js"></script>
         
         <!-- SOCKET IO -->
@@ -89,10 +92,15 @@
         <!-- CUSTOM JS -->
         <script type="text/javascript" src="js/app.js"></script>
         <script type="text/javascript" src="js/factories/factories.js"></script>
+        <script type="text/javascript" src="js/factories/loading-service.js"></script>
         <script src="js/factories/SocketService.js"></script>
         <script type="text/javascript" src="js/controllers/dashboard_controller.js"></script>
+        <script type="text/javascript" src="js/controllers/navbar_controller.js"></script>
         <script type="text/javascript" src="js/controllers/login_controller.js"></script>
+        <script type="text/javascript" src="js/controllers/signin_controller.js"></script>
+        <script type="text/javascript" src="js/controllers/loading_controller.js"></script>
         <script type="text/javascript" src="js/controllers/chat_controller.js"></script>
         <script type="text/javascript" src="js/controllers/users_list_controller.js"></script>
+        <script type="text/javascript" src="js/controllers/reset_controller.js"></script>
 
 </html>

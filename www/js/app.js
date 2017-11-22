@@ -17,7 +17,9 @@
  * under the License.
  */
 
-var app = angular.module('StandardApp',['ngResource','ngMaterial', 'ngStorage','ui.router', 'btford.socket-io']);
+var app = angular.module('CursandoApp',['ngResource','ngMaterial', 'ngStorage','ui.router', 'btford.socket-io', 'ngMessages']);
+
+app.constant('API_URL', 'http://192.168.0.115:8081/api/');
 
 app.config(function($stateProvider, $urlRouterProvider) {
 
@@ -27,10 +29,31 @@ app.config(function($stateProvider, $urlRouterProvider) {
         url: '/login',
         templateUrl: 'templates/login.html'
     })
-
+    .state('signin',{
+        url: '/signin',
+        templateUrl: 'templates/signin.html'
+    })
+    .state('reset',{
+        url:'/resetpassword',
+        templateUrl: 'templates/reset_password.html'
+    })
     .state('dashboard',{
         url: '/dashboard',
-        templateUrl: 'templates/dashboard.html'
+        templateUrl: 'templates/dashboard.html',
+        resolve: {isLoggedin: function($state, $localStorage){
+          
+            firebase.auth().onAuthStateChanged(function(user) {
+                  if (user) {
+                    // User is signed in.
+                    if ($localStorage.user.email == undefined){
+                        $state.go('login');
+                    }
+                  } else {
+                    // No user is signed in.
+                    $state.go('login');
+                  }
+                });
+        }}
     })
     .state('chat',{
         url: '/chat',
@@ -45,6 +68,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('/dashboard');
 })
 
+app.config(function($mdThemingProvider) {
+  $mdThemingProvider.theme('default')
+    .primaryPalette('blue-grey')
+    .accentPalette('red');
+});
 
 
 var app2 = {
@@ -74,25 +102,22 @@ var app2 = {
 
 
            var config = {
-                      apiKey: "AIzaSyC8dpd_zcHuia0zieXUW3jVQFDcNIp58jU",
-                      authDomain: "standardapp-37abf.firebaseapp.com",
-                      databaseURL: "https://standardapp-37abf.firebaseio.com",
-                      projectId: "standardapp-37abf",
-                      storageBucket: "standardapp-37abf.appspot.com",
-                      messagingSenderId: "1018658056483"
-                    };
+                apiKey: "AIzaSyC5tkkPfdt-swmIegNIkYseyVfyt9oVSmo",
+                authDomain: "cursando-54cdb.firebaseapp.com",
+                databaseURL: "https://cursando-54cdb.firebaseio.com",
+                projectId: "cursando-54cdb",
+                storageBucket: "cursando-54cdb.appspot.com",
+                messagingSenderId: "429570965516"
+                };
           firebase.initializeApp(config);
 
-
-          console.log('camera: '+ navigator.camera);
-    
            angular.element(document).ready(function () {
             if (window.cordova) {
               document.addEventListener('deviceready', function () {
-                angular.bootstrap(document.body, ['StandardApp']);
+                angular.bootstrap(document.body, ['CursandoApp']);
               }, false);
             } else {
-              angular.bootstrap(document.body, ['StandardApp']);
+              angular.bootstrap(document.body, ['CursandoApp']);
             }
           });
         this.receivedEvent('deviceready');
@@ -102,10 +127,10 @@ var app2 = {
     // Update DOM on a Received Event
     receivedEvent: function(id) {
         var parentElement = document.getElementById(id);
-        var listeningElement = parentElement.querySelector('.listening');
+        //var listeningElement = parentElement.querySelector('.listening');
         var receivedElement = parentElement.querySelector('.received');
 
-        listeningElement.setAttribute('style', 'display:none;');
+        //listeningElement.setAttribute('style', 'display:none;');
         receivedElement.setAttribute('style', 'display:block;');
 
         console.log('Received Event: ' + id);

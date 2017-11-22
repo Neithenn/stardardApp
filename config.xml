@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.standardapp.android" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>HelloCordova</name>
+<widget id="com.cursando.android" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Cursando</name>
     <description>
-        A sample Apache Cordova application that responds to the deviceready event.
+        Cursando Aplicacion
     </description>
-    <author email="dev@cordova.apache.org" href="http://cordova.io">
-        Apache Cordova Team
+    <author email="ezequiel.r26@gmail.com" href="">
+        Cursando App Team
     </author>
     <content src="index.html" />
     <plugin name="cordova-plugin-whitelist" spec="1" />
@@ -35,11 +35,13 @@
     </universal-links>
     <preference name="AndroidLaunchMode" value="singleTask" />
     <plugin name="cordova-plugin-facebook4" spec="~1.9.1">
-        <variable name="APP_ID" value="721697061373680" />
-        <variable name="APP_NAME" value="standardApp" />
+        <variable name="APP_ID" value="332723973797774" />
+        <variable name="APP_NAME" value="Cursando" />
     </plugin>
     <plugin name="cordova-plugin-device" spec="~1.1.6" />
     <plugin name="cordova-plugin-fcm" spec="~2.1.2" />
     <plugin name="cordova-plugin-camera" spec="~2.4.1" />
     <plugin name="com.mercadopago.cordova.sdk" spec="~1.1.18" />
+    <engine name="browser" spec="~4.1.0" />
+    <engine name="android" spec="~6.1.2" />
 </widget>

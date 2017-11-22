@@ -1,6 +1,8 @@
+<div ng-include="'templates/navbar/_navbar.html'"></div>
 
-<div ng-controller="dashboard_ctrl">
-	<md-content>
+<md-content>
+	<div ng-controller="dashboard_ctrl" class="dashboard-main-div">
+	
 		<h1>DASHBOARD</h1>
 		<p>nombre: {{user.nombre}}</p>
 		<p>uid: {{user.uid}}</p>
@@ -8,22 +10,14 @@
 		<p>photo: {{user.photo}}</p>
 		<p>imagen: {{userAvatar}}</p>
 		
-		<div class="centered">	
 			<md-button class="md-raised md-primary" ng-click="getPicturefromGallery()">Buscar Imagen</md-button>
-		</div>
-		<div class="centered">	
 			<md-button class="md-raised md-primary" ng-click="goToChat()">Chat Room</md-button>
-		</div>
-		<div class="centered">	
 			<md-button class="md-raised md-primary" ng-click="startCheckout()">Pagar</md-button>
-		</div>
-		<div class="centered">	
 			<md-button class="md-raised md-primary" ng-click="logout()">Logout</md-button>
-		</div>
 
 		
 		<div class="centered">
 			<img src="{{userAvatar}}" alt="imagen avatar" class="img-avatar"></img>
 		</div>
-	</md-content>
-</div>
+	</div>
+</md-content>

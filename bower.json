@@ -1,15 +1,15 @@
 {
-  "name": "StandardApp",
+  "name": "CursandoApp",
   "authors": [
     "Neithen"
   ],
-  "description": "App Standard con las instalaciones comunes",
+  "description": "Cursando Aplicacion",
   "main": "bower",
   "keywords": [
     "asd"
   ],
   "license": "Prueba",
-  "homepage": "www.buenjugador.com.ar",
+  "homepage": "www.cursando.com.ar",
   "private": true,
   "ignore": [
     "**/.*",
@@ -22,6 +22,7 @@
     "ngstorage": "^0.3.11",
     "angular-socket-io": "^0.7.0",
     "socket.io-client": "sio-client#^1.4.8",
-    "angular-material": "^1.1.5"
+    "angular-material": "^1.1.5",
+    "angular-messages": "^1.6.6"
   }
 }

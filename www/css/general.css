@@ -1,0 +1,44 @@
+.error-toolbar{
+	background-color: red !important;
+	color: white;
+	text-align: center !important;
+}
+
+.error-text{
+	font-weight: bold;
+	font-size: 12px;
+	text-align: center;
+}
+body{
+	min-height: 100% !important;
+}
+
+.main-div{
+	min-height: 100% !important;
+}
+
+
+md-sidenav,
+md-sidenav.md-locked-open-add-active,
+md-sidenav.md-closed.md-locked-open-add-active,
+md-sidenav.md-locked-open {
+  width: 260px;
+  min-width: 260px;
+  max-width: 290px;
+}
+
+.md-button.md-raised{
+	width: 100%;
+}
+
+.md-icon{
+	height: 24px;
+}
+
+.icon-button{
+	height: auto;
+}
+
+.no-transformation{
+	text-transform: none;
+}

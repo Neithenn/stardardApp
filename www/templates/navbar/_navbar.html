@@ -1,0 +1,34 @@
+<div ng-controller="navbar_ctrl">
+  <md-sidenav class="md-sidenav-left" md-component-id="left" md-whiteframe="4">
+    <md-toolbar class="md-theme-indigo">
+        <h1 class="md-toolbar-tools">Prueba sidenav</h1>
+    </md-toolbar>
+        <md-content layout-margin>
+          <p>
+            This sidenav is not showing any backdrop, where users can click on it, to close the sidenav.
+          </p>
+        </md-content>
+        
+  </md-sidenav>
+    
+
+  <md-content>
+    <md-toolbar class="md-hue-2">
+        <div class="md-toolbar-tools">
+          <md-button class="md-icon-button" aria-label="Settings" ng-click="toggleLeft()">
+            <i class="fa fa-bars" aria-hidden="true"></i>
+          </md-button>
+
+          <h2 flex md-truncate></h2>
+
+          <md-button class="md-icon-button" aria-label="Favorite">
+          <i class="fa fa-star-o" aria-hidden="true"></i>
+          </md-button>
+
+          <md-button class="md-icon-button" aria-label="More">
+          <i class="fa fa-caret-down" aria-hidden="true"></i>
+          </md-button>
+        </div>
+      </md-toolbar>
+  </md-content>
+</div>
